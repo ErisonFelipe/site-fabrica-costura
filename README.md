@@ -11,7 +11,7 @@ O objetivo do projeto é criar uma solução completa que envolva **Front-End, B
 Link do projeto online:
 
 ```
-https://seu-site.vercel.app
+(https://site-fabrica-costura-inky.vercel.app/)
 ```
 
 ---
