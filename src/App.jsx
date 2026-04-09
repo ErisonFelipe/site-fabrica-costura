@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -401,87 +402,181 @@ export default function CosturaWebsite() {
   }
 
   function ContactPage() {
-    return (
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <SectionHeader
-              eyebrow="Contato"
-              title="Página pronta para captar pedidos com mais presença visual"
-              description="Na próxima fase, esse formulário vai conversar com o back-end, validar dados e gravar tudo no banco. Finalmente o site fica bonito e útil ao mesmo tempo. Conceito revolucionário."
-            />
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    telefone: "",
+    empresa: "",
+    tipo_servico: "",
+    descricao: "",
+  });
 
-            <div className="mt-8 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-neutral-800 p-8 text-white shadow-xl">
-              <h3 className="text-2xl font-semibold">Canais de atendimento</h3>
-              <div className="mt-5 space-y-4 text-sm text-neutral-300">
-                <div className="flex items-center gap-3">
-                  <Phone size={16} />
-                  <p>WhatsApp: (11) 99999-9999</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail size={16} />
-                  <p>E-mail: contato@ateliecostura.com</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <BadgeCheck size={16} />
-                  <p>Horário: Segunda a Sexta, das 8h às 18h</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin size={16} />
-                  <p>São Paulo - SP</p>
-                </div>
+  const [loading, setLoading] = useState(false);
+  const [mensagem, setMensagem] = useState("");
+
+ 
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setMensagem("");
+
+    try {
+      const response = await fetch("http://localhost:3000/pedido", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao enviar solicitação");
+      }
+
+      const data = await response.json();
+
+      setMensagem("Solicitação enviada com sucesso!");
+      console.log("Resposta do servidor:", data);
+
+      setFormData({
+        nome: "",
+        email: "",
+        telefone: "",
+        empresa: "",
+        tipo_servico: "",
+        descricao: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setMensagem("Não foi possível enviar a solicitação.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+ return (
+    <section className="mx-auto max-w-7xl px-6 py-16">
+      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <SectionHeader
+            eyebrow="Contato"
+            title="Página pronta para captar pedidos com mais presença visual"
+            description="Na próxima fase, esse formulário vai conversar com o back-end, validar dados e gravar tudo no banco. Finalmente o site fica bonito e útil ao mesmo tempo. Conceito revolucionário."
+          />
+
+          <div className="mt-8 rounded-[2rem] bg-gradient-to-br from-neutral-900 to-neutral-800 p-8 text-white shadow-xl">
+            <h3 className="text-2xl font-semibold">Canais de atendimento</h3>
+            <div className="mt-5 space-y-4 text-sm text-neutral-300">
+              <div className="flex items-center gap-3">
+                <Phone size={16} />
+                <p>WhatsApp: (11) 99999-9999</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail size={16} />
+                <p>E-mail: contato@ateliecostura.com</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <BadgeCheck size={16} />
+                <p>Horário: Segunda a Sexta, das 8h às 18h</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin size={16} />
+                <p>São Paulo - SP</p>
               </div>
             </div>
           </div>
-
-          <form className="rounded-[2rem] bg-white p-6 shadow-xl ring-1 ring-neutral-200">
-            <div className="grid gap-4">
-              <input
-                type="text"
-                placeholder="Nome"
-                className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
-              />
-              <input
-                type="email"
-                placeholder="E-mail"
-                className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
-              />
-              <input
-                type="text"
-                placeholder="Telefone"
-                className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
-              />
-              <input
-                type="text"
-                placeholder="Empresa ou marca"
-                className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
-              />
-              <select className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500">
-                <option>Tipo de serviço</option>
-                <option>Confecção sob demanda</option>
-                <option>Uniformes</option>
-                <option>Produção em lote</option>
-                <option>Pilotagem</option>
-                <option>Ajustes</option>
-              </select>
-              <textarea
-                placeholder="Descreva o pedido"
-                rows={6}
-                className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-neutral-900 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-neutral-300 transition hover:-translate-y-0.5"
-              >
-                Enviar solicitação
-                <ArrowRight size={16} />
-              </button>
-            </div>
-          </form>
         </div>
-      </section>
-    );
-  }
+
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-[2rem] bg-white p-6 shadow-xl ring-1 ring-neutral-200"
+        >
+          <div className="grid gap-4">
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              value={formData.nome}
+              onChange={handleChange}
+              className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              value={formData.email}
+              onChange={handleChange}
+              className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
+            />
+
+            <input
+              type="text"
+              name="telefone"
+              placeholder="Telefone"
+              value={formData.telefone}
+              onChange={handleChange}
+              className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
+            />
+
+            <input
+              type="text"
+              name="empresa"
+              placeholder="Empresa ou marca"
+              value={formData.empresa}
+              onChange={handleChange}
+              className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
+            />
+
+            <select
+              name="tipo_servico"
+              value={formData.tipo_servico}
+              onChange={handleChange}
+              className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
+            >
+              <option value="">Tipo de serviço</option>
+              <option value="Confecção sob demanda">Confecção sob demanda</option>
+              <option value="Uniformes">Uniformes</option>
+              <option value="Produção em lote">Produção em lote</option>
+              <option value="Pilotagem">Pilotagem</option>
+              <option value="Ajustes">Ajustes</option>
+            </select>
+
+            <textarea
+              name="descricao"
+              placeholder="Descreva o pedido"
+              rows={6}
+              value={formData.descricao}
+              onChange={handleChange}
+              className="rounded-2xl border border-neutral-300 px-4 py-3 outline-none transition focus:border-rose-500"
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-neutral-900 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-neutral-300 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {loading ? "Enviando..." : "Enviar solicitação"}
+              <ArrowRight size={16} />
+            </button>
+
+            {mensagem && (
+              <p className="text-sm text-neutral-700">{mensagem}</p>
+            )}
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}
 
   function renderPage() {
     switch (currentPage) {
