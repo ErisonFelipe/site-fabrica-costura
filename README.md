@@ -1,24 +1,34 @@
-# Site para Fábrica de Costura
+# Sistema Web para Fábrica de Costura
 
-Projeto de site institucional desenvolvido para uma fábrica de costura com foco em presença digital profissional e possibilidade de expansão para um sistema de gestão de pedidos e análise de dados.
+Projeto completo desenvolvido com foco em **Front-End, Back-End, Banco de Dados e BI**, simulando um sistema real para gestão de pedidos de uma fábrica de costura.
 
-O objetivo do projeto é criar uma solução completa que envolva **Front-End, Back-End, Banco de Dados e BI**, servindo tanto como portfólio técnico quanto como solução real para pequenos negócios.
+O sistema permite que clientes enviem solicitações de orçamento através do site, com os dados sendo processados por uma API e armazenados em um banco PostgreSQL na nuvem.
 
 ---
 
 # Demonstração
 
-Link do projeto online:
+Frontend (site):
+https://seu-site.vercel.app
 
-```
-https://site-fabrica-costura-inky.vercel.app/
-```
+Backend (API):
+https://seu-backend.onrender.com
+
+---
+
+# Arquitetura do Projeto
+
+Frontend (React)
+↓
+Backend (Node.js + Express)
+↓
+Banco de Dados (PostgreSQL - Render)
 
 ---
 
 # Tecnologias utilizadas
 
-Front-End
+### Front-End
 
 * React
 * Vite
@@ -26,131 +36,198 @@ Front-End
 * Framer Motion
 * Lucide Icons
 
-Controle de versão
+### Back-End
+
+* Node.js
+* Express
+* CORS
+* Dotenv
+
+### Banco de Dados
+
+* PostgreSQL (Render)
+* pg (node-postgres)
+
+### Deploy
+
+* Vercel (Frontend)
+* Render (Backend + Banco)
+
+### Versionamento
 
 * Git
 * GitHub
 
-Deploy
-
-* Vercel
-
-Futuras tecnologias do projeto
-
-Back-End
-
-* Node.js
-* Express
-
-Banco de Dados
-
-* PostgreSQL
-
-Business Intelligence
-
-* Power BI ou Metabase
-
 ---
 
-# Funcionalidades atuais
+# Funcionalidades implementadas
 
-* Página inicial com apresentação da empresa
+## Front-End
+
+* Interface moderna e responsiva
+* Navegação entre páginas
 * Página de serviços
-* Página sobre a fábrica
-* Galeria de produção
-* Página de contato com formulário
-* Design responsivo para mobile e desktop
-* Interface moderna com animações suaves
-* Navegação dinâmica entre páginas
+* Página institucional
+* Página de contato/orçamento
+* Formulário integrado com API
+* Validação de campos
+* Feedback de envio (sucesso/erro)
 
----
+## Back-End
 
-# Próximas funcionalidades
+* API REST com Express
+* Rota GET `/` para status
+* Rota POST `/pedido` para cadastro
+* Integração com PostgreSQL
+* Tratamento de erros
+* Uso de variáveis de ambiente
 
-O projeto será expandido para incluir:
+## Banco de Dados
 
-* API para envio de pedidos
-* Cadastro de clientes
-* Registro de pedidos no banco de dados
-* Controle básico de produção
-* Painel interno para gestão da fábrica
-* Dashboard de análise de pedidos e vendas
+* Banco PostgreSQL na nuvem (Render)
+* Tabela `clientes`
+* Tabela `pedidos`
+* Relacionamento entre cliente e pedido
 
 ---
 
 # Estrutura do projeto
 
-```
+```bash
 site-costura
 │
-├── public
-├── src
-│   ├── App.jsx
-│   ├── main.jsx
-│   ├── index.css
+├── src                # Frontend React
+├── server             # Backend Node
+│   ├── index.js
+│   ├── db.js
+│   └── .env
 │
 ├── package.json
-├── tailwind.config.js
-└── vite.config.js
+└── README.md
 ```
 
 ---
 
-# Como executar o projeto
+# Como rodar o projeto localmente
 
-1. Clonar o repositório
+### 1. Clonar repositório
 
-```
+```bash
 git clone https://github.com/seuusuario/site-fabrica-costura.git
-```
-
-2. Entrar na pasta do projeto
-
-```
 cd site-fabrica-costura
 ```
 
-3. Instalar dependências
+### 2. Instalar dependências
 
-```
+Frontend:
+
+```bash
 npm install
 ```
 
-4. Executar o projeto
+Backend:
 
+```bash
+cd server
+npm install
 ```
+
+---
+
+### 3. Configurar variáveis de ambiente
+
+#### Backend (`server/.env`)
+
+```env
+DATABASE_URL=sua_string_de_conexao_postgres
+PORT=3000
+```
+
+#### Frontend (`.env`)
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+---
+
+### 4. Rodar aplicação
+
+Backend:
+
+```bash
+cd server
+node index.js
+```
+
+Frontend:
+
+```bash
 npm run dev
 ```
 
-O site estará disponível em:
+---
 
+# Testando a API
+
+### Rota de teste
+
+```bash
+GET /
 ```
-http://localhost:5173
+
+### Enviar pedido
+
+```bash
+POST /pedido
+```
+
+Exemplo JSON:
+
+```json
+{
+  "nome": "Erison Felipe",
+  "email": "teste@email.com",
+  "telefone": "11999999999",
+  "empresa": "Costura Exemplo",
+  "tipo_servico": "Confecção sob demanda",
+  "descricao": "Pedido de teste"
+}
 ```
 
 ---
 
 # Objetivo do projeto
 
-Este projeto faz parte de um processo de evolução profissional nas áreas de:
+Este projeto foi desenvolvido com foco em evolução nas áreas de:
 
 * Desenvolvimento Web
-* Banco de Dados
+* Banco de Dados (DBA)
 * Engenharia de Dados
 * Business Intelligence
 
-A proposta é construir um sistema completo que possa ser utilizado por pequenos negócios para organizar pedidos, produção e análise de dados.
+A proposta é evoluir o sistema para um modelo completo de gestão de pedidos, produção e análise de dados para pequenos negócios.
+
+---
+
+# Próximas melhorias
+
+* Dashboard administrativo (React)
+* Listagem de pedidos
+* Filtros e status de produção
+* Dashboard BI (Power BI / Metabase)
+* Autenticação de usuários
+* Deploy completo em produção
 
 ---
 
 # Autor
 
-Projeto desenvolvido por **Erison Felipe**
+Erison Felipe
 
-Interesses profissionais:
+Foco profissional:
 
 * Banco de Dados
 * Business Intelligence
 * Desenvolvimento de sistemas
-* Soluções tecnológicas para pequenos negócios
-
+* Soluções para pequenos negócios
