@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "eslint.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -32,7 +32,6 @@
     "vite": "^8.0.4"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "eslint.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ErisonFelipe/site-fabrica-costura.git"

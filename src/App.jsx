@@ -6,6 +6,7 @@ import ContactPage from "./pages/ContactPage";
 import GalleryPage from "./pages/GalleryPage";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -43,6 +44,7 @@ export default function App() {
       {renderPage()}
 
       <Footer goToPage={goToPage} />
+      <WhatsAppButton />
     </main>
   );
 }

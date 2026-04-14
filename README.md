@@ -64,17 +64,16 @@ Banco de Dados (PostgreSQL - Render)
 
 ## Front-End
 
-* Interface moderna e responsiva
-* Navegação entre páginas
-* Página de serviços
-* Página institucional
-* Página de contato/orçamento
-* Formulário integrado com API
-* Validação de campos
-* Feedback de envio (sucesso/erro)
+* Refatoração da estrutura do projeto para separar componentes, páginas, dados e hooks
+* Implementação de menu mobile com animação e navegação lateral
+* Adição de botão flutuante de WhatsApp
+* Aplicação de máscara no campo de telefone
+* Criação de validações visuais no formulário
+* Melhoria do rodapé com navegação, serviços e contato
 
 ## Back-End
 
+* Integração do formulário com a API hospedada no Render
 * API REST com Express
 * Rota GET `/` para status
 * Rota POST `/pedido` para cadastro
@@ -84,10 +83,15 @@ Banco de Dados (PostgreSQL - Render)
 
 ## Banco de Dados
 
-* Banco PostgreSQL na nuvem (Render)
-* Tabela `clientes`
-* Tabela `pedidos`
-* Relacionamento entre cliente e pedido
+*  Estrutura inicial planejada para evolução do banco com foco em:
+
+* clientes
+* produtos
+* estoque
+* pedidos
+* vendas
+* movimentações
+* relatórios e dashboard BI
 
 ---
 
