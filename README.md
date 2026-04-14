@@ -9,10 +9,10 @@ O sistema permite que clientes enviem solicitações de orçamento através do s
 # Demonstração
 
 Frontend (site):
-https://seu-site.vercel.app
+[https://seu-site.vercel.app](https://site-fabrica-costura-inky.vercel.app/)
 
 Backend (API):
-https://seu-backend.onrender.com
+[https://seu-backend.onrender.com](https://site-fabrica-costura-1.onrender.com/)
 
 ---
 
